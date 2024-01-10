@@ -23,7 +23,7 @@ else
 fi
 wget https://www.virtualhere.com/sites/default/files/usbserver/$FILENAME
 chmod +x $FILENAME
-mv $FILENAME /usr/local/sbin
+mv $FILENAME /storage
 mkdir -p /usr/local/etc/virtualhere
 if [ -d "/etc/systemd/system" ]; then
   cat << EOF > /etc/systemd/system/virtualhere.service
@@ -33,7 +33,7 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=/usr/local/sbin/$FILENAME -b -c /usr/local/etc/virtualhere/config.ini
+ExecStart=/storage/$FILENAME -b -c /usr/local/etc/virtualhere/config.ini
 
 [Install]
 WantedBy=multi-user.target
