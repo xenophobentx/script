@@ -24,7 +24,7 @@ fi
 wget https://www.virtualhere.com/sites/default/files/usbserver/$FILENAME
 chmod +x $FILENAME
 mv $FILENAME /storage
-mkdir -p /usr/local/etc/virtualhere
+mkdir -p /storage/local/etc/virtualhere
 if [ -d "/etc/systemd/system" ]; then
   cat << EOF > /etc/systemd/system/virtualhere.service
 [Unit]
@@ -33,7 +33,7 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=/storage/$FILENAME -b -c /usr/local/etc/virtualhere/config.ini
+ExecStart=/storage/$FILENAME -b -c /storage/local/etc/virtualhere/config.ini
 
 [Install]
 WantedBy=multi-user.target
